@@ -1,0 +1,61 @@
+<!doctype html>
+<html manifest="manifest.appcache">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Words</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="manifest" href="manifest.json">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <div id="menu" class="input-group">
+    <select id="letters" class="form-select" name="letters">
+      <option value="4">4 slova</option>
+      <option value="5" selected>5 slova</option>
+      <option value="6">6 slova</option>
+      <option value="7">7 slova</option>
+    </select>
+    <select id="level" class="form-select" name="level">
+      <option value="1">Nivo 1</option>
+      <option value="2">Nivo 2</option>
+      <option value="3">Nivo 3</option>
+      <option value="4">Engleske riječi</option>
+    </select>
+</div>
+
+    <div id="letters_div"></div>
+    <div id="stats">
+      <span>Games:</span> <span id="games">0</span>
+      <span>Last (s): </span><span id="last">0</span>
+      <span>Total (s): </span><span id="total">0</span>
+        <span>Avg (s/game): </span><span id="avg"></span>
+    </div>
+    <div id="seed" onclick="share()">
+      <i class="bi bi-share"></i>
+    </div>
+    <input id="share-url" type="text"> 
+    <script>
+      if (navigator.serviceWorker) {
+        navigator.serviceWorker.register (
+          '/words/sw.js',
+          {scope: '/words/'}
+        )
+      }
+  </script>    
+    <script src="jquery-3.6.4.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <script src="endict.js"></script>
+    <script src="hrdict1.js"></script>
+    <script src="hrdict2.js"></script>
+    <script src="hrdict3.js"></script>
+    <script src="cookie.js"></script>
+    <script src="utils.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

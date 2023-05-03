@@ -1,0 +1,23 @@
+CACHE MANIFEST
+# 2012-01-01 v1.0.0
+
+CACHE:
+/fonts/bootstrap-icons.woff
+/fonts/bootstrap-icons.woff2
+/android-chrome-192x192.png
+/android-chrome-512x512.png
+/apple-touch-icon.png
+/bootstrap-icons.css
+/bootstrap.min.css
+/bootstrap.min.js
+/cookie.js
+/favicon-16x16.png
+/favicon-32x32.png
+/favicon.ico
+/index.html
+/jquery-3.6.4.min.js
+/main.css
+/main.js
+/manifest.appcache
+/site.webmanifest
+/utils.js

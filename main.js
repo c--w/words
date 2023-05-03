@@ -24,6 +24,8 @@ function init() {
     }
     if (letters < 4)
         letters = 5;
+    if (level < 1)
+        level = 1;
     $("#letters").val(letters);
     $("#level").val(level);
     setCookie("letters", letters, 730);

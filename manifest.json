@@ -1,8 +1,8 @@
 {
-    "name": "Digits",
-    "short_name": "Digits",
-    "scope": "/digits/",
-    "start_url": "/digits/",
+    "name": "Words",
+    "short_name": "Words",
+    "scope": "/words/",
+    "start_url": "/words/",
     "icons": [
         {
             "src": "android-chrome-192x192.png",

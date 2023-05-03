@@ -4,7 +4,7 @@ function share() {
     document.execCommand("Copy");
     if (isMobileDevice()) {
         let text = "Solve this if you can: \n" + copyText.value;
-        let shareData = { title: "Digits", text: text };
+        let shareData = { title: "Words", text: text };
         try {
             window.Android.share(text);
         } catch (err) { }

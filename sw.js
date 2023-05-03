@@ -1,14 +1,14 @@
 // Change this to your repository name
-var GHPATH = '/digits';
+var GHPATH = '/words';
  
 // Choose a different app prefix name
-var APP_PREFIX = 'digits_';
+var APP_PREFIX = 'words_';
  
 // The version of the cache. Every time you change any of the files
 // you need to change this version (version_01, version_02…). 
 // If you don't change the version, the service worker will give your
 // users the old files!
-var VERSION = 'version_03';
+var VERSION = 'version_00';
  
 // The files to make available for offline use. make sure to add 
 // others to this list
@@ -30,6 +30,10 @@ var URLS = [
   `${GHPATH}/favicon.ico`,
   `${GHPATH}/index.html`,
   `${GHPATH}/jquery-3.6.4.min.js`,
+  `${GHPATH}/hrdict1.js`,
+  `${GHPATH}/hrdict2.js`,
+  `${GHPATH}/hrdict3.js`,
+  `${GHPATH}/endict.js`,
   `${GHPATH}/main.css`,
   `${GHPATH}/main.js`,
   `${GHPATH}/manifest.json`,

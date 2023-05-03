@@ -133,9 +133,9 @@ function rand() {
 
 function initSeed() {
     if (window.location.hash) {
-        letters = Number(window.location.hash.substring(0, 1))
-        level = Number(window.location.hash.substring(1, 2))
-        seed = window.location.hash.substring(2);
+        letters = Number(window.location.hash.substring(1, 2))
+        level = Number(window.location.hash.substring(2, 3))
+        seed = window.location.hash.substring(3);
         if (seed.startsWith("e")) {
             gamemode = 1;
             seed = seed.substring(1);

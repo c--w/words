@@ -1,7 +1,10 @@
 @import url("bootstrap-icons.css");
 
+:root {
+    --lw: 10vw;
+}
 html {
-    font-size: 3vw;
+    font-size: min(4vw, 30px);
 }
 * {
     transition: all .3s ease-out;
@@ -23,8 +26,8 @@ body {
 }
 #letters_div {
     align-self: center;
-    font-size: 4vw;
-    margin-top: 3vh;
+    font-size: calc(var(--lw)/2);
+    margin-top: 10vh;
     
 }
 #letters_div {
@@ -37,8 +40,8 @@ body {
     align-content: center;
     flex-direction: column;
     text-align: center;
-    width: 10vw;
-    height: 10vw;
+    width: var(--lw);
+    height: var(--lw);
     margin: 1vw;
     border: 0.5vmin dashed black;
     overflow: hidden;

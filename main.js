@@ -40,11 +40,11 @@ function changeGame() {
     setCookie("letters", letters, 730);
     level = $("#level").val();
     setCookie("level", level, 730);
+    setBckg();
     initGame();
 }
 
 function initGame() {
-    setBckg();
     startseed = seed;
     let seed_url;
     seed_url = letters + level + startseed;
@@ -132,7 +132,9 @@ function rand() {
 
 function initSeed() {
     if (window.location.hash) {
-        seed = window.location.hash.substring(1);
+        letters = Number(window.location.hash.substring(0, 1))
+        level = Number(window.location.hash.substring(1, 2))
+        seed = window.location.hash.substring(2);
         if (seed.startsWith("e")) {
             gamemode = 1;
             seed = seed.substring(1);

@@ -48,7 +48,7 @@ function initGame() {
     startseed = seed;
     let seed_url;
     seed_url = letters + level + startseed;
-    document.querySelector(':root').style.setProperty('--lw', Math.floor((90-Number(letters))/letters) + "vw");
+    document.querySelector(':root').style.setProperty('--lw', Math.floor((90 - Number(letters)) / letters) + "vw");
 
     var url = window.location.origin + window.location.pathname + "#" + seed_url;
     $("#share-url").val(url);
@@ -94,9 +94,9 @@ function handleClick(event) {
                 undo_stack.pop();
                 undo_stack_elem.pop();
                 last_selected = undo_stack_elem[undo_stack_elem.length - 1];
-                if(last_selected)
+                if (last_selected)
                     last_selected.removeClass('past-selected').addClass('selected')
-            } 
+            }
             return;
         }
         $('.letter.selected').removeClass('selected').addClass('past-selected')
@@ -106,8 +106,9 @@ function handleClick(event) {
         undo_stack_elem.push(el);
         if (undo_stack.length == letters) {
             if (undo_stack.join() == guess_word.join()) {
-                fillLetters(guess_word)
-                setTimeout(()=>{
+                //fillLetters(guess_word)
+                animateLetters()
+                setTimeout(() => {
                     $('.letter').addClass('winner');
                 }, 10)
                 games++;
@@ -127,6 +128,30 @@ function randomsort(a, b) {
     return rand() * 2 - 1;
 }
 
+function animateLetters() {
+    for (let i = 0; i < letters; i++) {
+        const target = document.querySelector('.letter:nth-of-type('+(i+1)+')');
+        const source = document.querySelector('.letter:nth-of-type('+($(undo_stack_elem[i]).data('i')+1)+')');
+
+        const targetRect = target.getBoundingClientRect();
+        const sourceRect = source.getBoundingClientRect();
+
+        const deltaX = targetRect.left - sourceRect.left;
+        const deltaY = targetRect.top - sourceRect.top;
+
+        source.animate(
+            [
+                { transform: 'translate(0px, 0px)' },
+                { transform: `translate(${deltaX}px, ${deltaY}px)` }
+            ],
+            {
+                duration: 600,
+                easing: 'ease-in-out',
+                fill: 'both'
+            }
+        );
+    }
+}
 function rand() {
     seed++;
     let t = seed += 0x6D2B79F5;
@@ -205,7 +230,7 @@ function toEasy(a, b) {
         if (a[i] == b[i])
             sum++;
     }
-    return sum > a.length/3;
+    return sum > a.length / 3;
 }
 
 

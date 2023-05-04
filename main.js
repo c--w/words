@@ -107,7 +107,9 @@ function handleClick(event) {
         if (undo_stack.length == letters) {
             if (undo_stack.join() == guess_word.join()) {
                 fillLetters(guess_word)
-                $('.letter').addClass('winner');
+                setTimeout(()=>{
+                    $('.letter').addClass('winner');
+                }, 10)
                 games++;
                 last_time = Math.round((Date.now() - start_time) / 1000);
                 total_time += last_time;

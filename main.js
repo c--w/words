@@ -83,6 +83,9 @@ function handleClick(event) {
     let el = $(event.target);
     if (el.hasClass('letter')) {
         effect(el);
+        if (el.hasClass('past-selected')) {
+            return;
+        }
         let current_index = $('.letter.selected').data('i');
         let new_index = el.data('i');
         if (new_index == current_index) {

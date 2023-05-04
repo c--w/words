@@ -94,10 +94,9 @@ function handleClick(event) {
                 undo_stack.pop();
                 undo_stack_elem.pop();
                 last_selected = undo_stack_elem[undo_stack_elem.length - 1];
-                last_selected.removeClass('past-selected').addClass('selected')
-            } else {
-                last_selected = null;
-            }
+                if(last_selected)
+                    last_selected.removeClass('past-selected').addClass('selected')
+            } 
             return;
         }
         $('.letter.selected').removeClass('selected').addClass('past-selected')

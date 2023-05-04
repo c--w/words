@@ -40,6 +40,10 @@ function changeGame() {
     setCookie("letters", letters, 730);
     level = $("#level").val();
     setCookie("level", level, 730);
+    last_time = 0;
+    total_time = 0;
+    games = 0;
+    start_time = 0;
     setBckg();
     initGame();
 }
@@ -67,6 +71,8 @@ function initGame() {
     $("#total").text(total_time);
     if (games)
         $("#avg").text(Math.round(total_time / games));
+    else
+        $("#avg").text('');
     start_time = Date.now();
 }
 

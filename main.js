@@ -204,7 +204,7 @@ function toEasy(a, b) {
         if (a[i] == b[i])
             sum++;
     }
-    return sum > 2;
+    return sum > a.length/3;
 }
 
 

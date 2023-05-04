@@ -50,12 +50,12 @@ body {
 }
 
 .selected {
-    background-color: hsl(140 100% 36%);;
+    background-color: hsl(140 100% 40%);
     border: 0;
 }
 
 .past-selected {
-    background-color: hsl(140 90% 28%);;
+    background-color: hsl(140 50% 40%);
     border: 0;
 }
 

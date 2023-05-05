@@ -32,7 +32,7 @@ function init() {
     setCookie("level", level, 730);
     $("#letters").on("change", changeGame);
     $("#level").on("change", changeGame);
-    initGame();
+    changeGame();
 }
 
 function changeGame() {

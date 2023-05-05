@@ -77,7 +77,7 @@ body {
 }
 
 #stats {
-    font-size: 1.8vmax;
+    font-size: min(2.5vmax, 20px);
     font-weight: 400;
     position:fixed;
     bottom: 1.5vmax;

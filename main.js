@@ -66,14 +66,31 @@ function initGame() {
     undo_stack = [];
     undo_stack_elem = [];
     last_selected = null;
+    updateStats();
+    start_time = Date.now();
+}
+
+function updateStats() {
     $("#games").text(games);
     $("#last").text(last_time);
     $("#total").text(total_time);
-    if (games)
-        $("#avg").text(Math.round(total_time / games));
-    else
-        $("#avg").text('');
-    start_time = Date.now();
+    if (!games)
+        return;
+    let avg = Math.round(total_time / games);
+    $("#avg").text(avg);
+    let key = 'words' + games + '-' + letters + '-' + level;
+    let best = localStorage.getItem(key);
+    if (best) {
+        best = Number(best);
+        if (avg < best) {
+            best = avg;
+        }
+    } else {
+        best = avg;
+    }
+    localStorage.setItem(key, best);
+    $("#best-games").text(games);
+    $("#best").text(best);
 }
 
 function fillLetters(letters) {
@@ -136,8 +153,8 @@ function randomsort(a, b) {
 
 function animateLetters() {
     for (let i = 0; i < letters; i++) {
-        const target = document.querySelector('.letter:nth-of-type('+(i+1)+')');
-        const source = document.querySelector('.letter:nth-of-type('+($(undo_stack_elem[i]).data('i')+1)+')');
+        const target = document.querySelector('.letter:nth-of-type(' + (i + 1) + ')');
+        const source = document.querySelector('.letter:nth-of-type(' + ($(undo_stack_elem[i]).data('i') + 1) + ')');
 
         const targetRect = target.getBoundingClientRect();
         const sourceRect = source.getBoundingClientRect();

@@ -45,6 +45,7 @@ function changeGame() {
     games = 0;
     start_time = 0;
     setBckg();
+    $('#letters_div').removeClass('circle4 circle5 circle6 circle7');
     initGame();
 }
 
@@ -93,9 +94,10 @@ function updateStats() {
     $("#best").text(best);
 }
 
-function fillLetters(letters) {
+function fillLetters(letters_arr) {
     $('#letters_div').empty();
-    letters.forEach((l, i) => {
+    $('#letters_div').addClass('circle').addClass("circle"+letters);
+    letters_arr.forEach((l, i) => {
         var div = $('<div class="letter">' + l + '</div>');
         div.data('l', l);
         div.data('i', i);
@@ -130,10 +132,11 @@ function handleClick(event) {
         if (undo_stack.length == letters) {
             if (undo_stack.join() == guess_word.join()) {
                 //fillLetters(guess_word)
-                animateLetters()
+                $('#letters_div').removeClass('circle'+letters).removeClass('circle');
+                setTimeout(animateLetters, 400)
                 setTimeout(() => {
                     $('.letter').addClass('winner');
-                }, 10)
+                }, 350)
                 games++;
                 last_time = Math.round((Date.now() - start_time) / 1000);
                 total_time += last_time;
@@ -161,7 +164,11 @@ function animateLetters() {
 
         const deltaX = targetRect.left - sourceRect.left;
         const deltaY = targetRect.top - sourceRect.top;
-
+        console.log(deltaX, deltaY);
+        setTimeout((source, deltaX, deltaY) => {
+            $(source).css('transform', `translate(${deltaX}px, ${deltaY}px)`);
+        }, 10, source, deltaX, deltaY);
+        /*
         source.animate(
             [
                 { transform: 'translate(0px, 0px)' },
@@ -173,6 +180,7 @@ function animateLetters() {
                 fill: 'both'
             }
         );
+        */
     }
 }
 function rand() {

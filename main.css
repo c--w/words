@@ -3,9 +3,11 @@
 :root {
     --lw: 10vw;
 }
+
 html {
-    font-size: min(4vw, 30px);
+    font-size: min(4vw, 26px);
 }
+
 * {
     transition: all .3s ease-out;
     box-sizing: border-box;
@@ -24,12 +26,14 @@ body {
     align-self: center;
     width: auto;
 }
+
 #letters_div {
     align-self: center;
     font-size: calc(var(--lw)/2);
     margin-top: 10vh;
-    
+
 }
+
 #letters_div {
     display: flex;
 }
@@ -46,7 +50,7 @@ body {
     border: 0.5vmin dashed black;
     overflow: hidden;
     cursor: pointer;
-    border-radius: 10%;
+    border-radius: 50%;
 }
 
 .selected {
@@ -68,18 +72,18 @@ body {
     transition: all 0.5s cubic-bezier(0.5, -0.5, 0.5, 2);
     border: 0;
     box-shadow: 0px 0px calc(var(--lw)/5) 0px gold;
-    border-radius: 20%;
+    transition: all .5s ease-out;
 }
 
-.effect  {
+.effect {
     background-color: gray;
     transition: all 0.1s cubic-bezier(0.5, -0.5, 0.5, 2);
 }
 
 #stats {
-    font-size: min(2.5vmax, 20px);
+    font-size: min(2.5vmax, 18px);
     font-weight: 400;
-    position:fixed;
+    position: fixed;
     bottom: 1.5vmax;
     left: 1.5vmax;
     display: grid;
@@ -92,13 +96,117 @@ body {
 #seed {
     font-weight: 400;
     font-size: 2vmax;
-    position:fixed;
+    position: fixed;
     bottom: 1.5vmax;
     right: 1.5vmax;
     cursor: pointer;
-    color:dodgerblue;
+    color: dodgerblue;
 }
+
 #share-url {
     position: absolute;
     top: -1000px;
+}
+
+.circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vmin;
+    width: 100vmin;
+}
+
+.circle div {
+    position: absolute;
+}
+
+.circle4 div {
+    height: 28vmin;
+    width: 28vmin;
+    font-size: 10vmin;
+}
+.circle5 div {
+    height: 24vmin;
+    width: 24vmin;
+    font-size: 8vmin;
+}
+.circle6 div {
+    height: 20vmin;
+    width: 20vmin;
+    font-size: 7vmin;
+}
+.circle7 div {
+    height: 18vmin;
+    width: 18vmin;
+    font-size: 6vmin;
+}
+
+.circle4 div:nth-child(1) {
+    transform: rotate(0deg) translate(25vmin) rotate(0deg);
+}
+.circle4 div:nth-child(2) {
+    transform: rotate(90deg) translate(25vmin) rotate(-90deg);
+}
+.circle4 div:nth-child(3) {
+    transform: rotate(180deg) translate(25vmin) rotate(-180deg);
+}
+.circle4 div:nth-child(4) {
+    transform: rotate(270deg) translate(25vmin) rotate(-270deg);
+}
+
+.circle5 div:nth-child(1) {
+    transform: rotate(0deg) translate(25vmin) rotate(0deg);
+}
+.circle5 div:nth-child(2) {
+    transform: rotate(72deg) translate(25vmin) rotate(-72deg);
+}
+.circle5 div:nth-child(3) {
+    transform: rotate(144deg) translate(25vmin) rotate(-144deg);
+}
+.circle5 div:nth-child(4) {
+    transform: rotate(216deg) translate(25vmin) rotate(-216deg);
+}
+.circle5 div:nth-child(5) {
+    transform: rotate(288deg) translate(25vmin) rotate(-288deg);
+}
+
+.circle6 div:nth-child(1) {
+    transform: rotate(0deg) translate(25vmin) rotate(0deg);
+}
+.circle6 div:nth-child(2) {
+    transform: rotate(60deg) translate(25vmin) rotate(-60deg);
+}
+.circle6 div:nth-child(3) {
+    transform: rotate(120deg) translate(25vmin) rotate(-120deg);
+}
+.circle6 div:nth-child(4) {
+    transform: rotate(180deg) translate(25vmin) rotate(-180deg);
+}
+.circle6 div:nth-child(5) {
+    transform: rotate(240deg) translate(25vmin) rotate(-240deg);
+}
+.circle6 div:nth-child(6) {
+    transform: rotate(300deg) translate(25vmin) rotate(-300deg);
+}
+
+.circle7 div:nth-child(1) {
+    transform: rotate(0deg) translate(25vmin) rotate(0deg);
+}
+.circle7 div:nth-child(2) {
+    transform: rotate(51.4deg) translate(25vmin) rotate(-51.4deg);
+}
+.circle7 div:nth-child(3) {
+    transform: rotate(102.8deg) translate(25vmin) rotate(-102.8deg);
+}
+.circle7 div:nth-child(4) {
+    transform: rotate(154.2deg) translate(25vmin) rotate(-154.2deg);
+}
+.circle7 div:nth-child(5) {
+    transform: rotate(205.6deg) translate(25vmin) rotate(-205.6deg);
+}
+.circle7 div:nth-child(6) {
+    transform: rotate(257deg) translate(25vmin) rotate(-257deg);
+}
+.circle7 div:nth-child(7) {
+    transform: rotate(308.4deg) translate(25vmin) rotate(-308.4deg);
 }

@@ -24,6 +24,9 @@
 
 <body>
   <div id="menu" class="input-group">
+    <button id="reload" class="btn btn-outline-secondary" onclick="hint();">
+      <i class="bi bi-lightbulb-fill"></i>
+    </button>
     <select id="letters" class="form-select" name="letters">
       <option value="4">4 slova</option>
       <option value="5" selected>5 slova</option>
@@ -36,6 +39,9 @@
       <option value="3">Nivo 3</option>
       <option value="4">Engleske riječi</option>
     </select>
+    <button id="reload" class="btn btn-outline-secondary" onclick="scrambleAndFill();">
+      <i class="bi bi-shuffle"></i>
+    </button>
   </div>
 
   <div id="letters_div" class="circle5"></div>

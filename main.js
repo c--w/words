@@ -59,16 +59,25 @@ function initGame() {
     var url = window.location.origin + window.location.pathname + "#" + seed_url;
     $("#share-url").val(url);
     guess_word = getRandomWord();
-    let scrambled_word;
-    do {
-        scrambled_word = [...guess_word].sort(randomsort).sort(randomsort);
-    } while (toEasy(guess_word, scrambled_word))
+    scrambleAndFill();
+    updateStats();
+    start_time = Date.now();
+}
+
+function scrambleAndFill() {
+    let scrambled_word = [...guess_word].sort(randomsort).sort(randomsort);
     fillLetters(scrambled_word);
     undo_stack = [];
     undo_stack_elem = [];
     last_selected = null;
-    updateStats();
-    start_time = Date.now();
+    hint_ind = 0;
+}
+
+function hint() {
+    start_time -= 20*1000*(undo_stack.length+1);
+    let elem = $('.letter').toArray().find(l => $(l).data('l') == guess_word[undo_stack.length]);
+    handleClick({target: elem});
+    hint_ind++;
 }
 
 function updateStats() {
@@ -96,6 +105,7 @@ function updateStats() {
 
 function fillLetters(letters_arr) {
     $('#letters_div').empty();
+    $('#letters_div').removeClass("circle" + letters);
     $('#letters_div').addClass("row" + letters);
     letters_arr.forEach((l, i) => {
         var div = $('<div class="letter">' + l + '</div>');
@@ -235,15 +245,3 @@ function effect(el) {
     el.addClass('effect');
     setTimeout((el) => el.removeClass('effect'), 100, el);
 }
-
-function toEasy(a, b) {
-    let sum = 0;
-    for (let i = 0; i < a.length; i++) {
-        if (a[i] == b[i])
-            sum++;
-    }
-    return sum > a.length / 3;
-}
-
-
-

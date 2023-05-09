@@ -96,7 +96,7 @@ body {
     left: 1.5vmax;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
     grid-column-gap: 2vmin;
     grid-row-gap: 0.2vmin;
 }

@@ -18,7 +18,6 @@
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-E215WR2N8S');
   </script>
 </head>
@@ -41,24 +40,16 @@
 
   <div id="letters_div" class="circle5"></div>
   <div id="stats">
-    <span>Games:</span> <span id="games">0</span>
-    <span>Last (s): </span><span id="last">0</span>
-    <span>Total (s): </span><span id="total">0</span>
-    <span>Avg (s/game): </span><span id="avg"></span>
-    <span>Best avg for <span id="best-games"></span> games:</span><span id="best"></span>
+    <span>N:</span> <span id="games">0</span>
+    <span>T: </span><span id="last">0</span>
+    <span>Σ: </span><span id="total">0</span>
+    <span>μ: </span><span id="avg"></span>
+    <span>min μ (<span id="best-games"></span>):</span><span id="best"></span>
   </div>
   <div id="seed" onclick="share()">
     <i class="bi bi-share"></i>
   </div>
   <input id="share-url" type="text">
-  <script>
-    if (navigator.serviceWorker) {
-      navigator.serviceWorker.register(
-        '/words/sw.js',
-        { scope: '/words/' }
-      )
-    }
-  </script>
   <script src="jquery-3.6.4.min.js"></script>
   <script src="bootstrap.min.js"></script>
   <script src="endict.js"></script>

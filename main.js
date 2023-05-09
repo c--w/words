@@ -63,7 +63,6 @@ function initGame() {
     do {
         scrambled_word = [...guess_word].sort(randomsort).sort(randomsort);
     } while (toEasy(guess_word, scrambled_word))
-    console.log(scrambled_word);
     fillLetters(scrambled_word);
     undo_stack = [];
     undo_stack_elem = [];
@@ -173,19 +172,6 @@ function animateLetters() {
         setTimeout((source, i) => {
             $(source).css('transform',  css_transforms[i]);
         }, 10, source, i);
-        /*
-        source.animate(
-            [
-                { transform: 'translate(0px, 0px)' },
-                { transform: `translate(${deltaX}px, ${deltaY}px)` }
-            ],
-            {
-                duration: 600,
-                easing: 'ease-in-out',
-                fill: 'both'
-            }
-        );
-        */
     }
 }
 function rand() {
@@ -201,15 +187,6 @@ function initSeed() {
         letters = Number(window.location.hash.substring(1, 2))
         level = Number(window.location.hash.substring(2, 3))
         seed = window.location.hash.substring(3);
-        if (seed.startsWith("e")) {
-            gamemode = 1;
-            seed = seed.substring(1);
-        } else if (seed.startsWith("h")) {
-            gamemode = 3;
-            seed = seed.substring(1);
-        } else {
-            gamemode = 2;
-        }
         seed = Number(seed)
         if (!isNaN(seed))
             return;
@@ -232,7 +209,6 @@ function getRandomWord() {
     });
     let i = Math.floor(rand() * filtered.length);
     let word = filtered[i];
-    console.log("Random word:", level, word);
     return convertDoubleLetters(word);
 }
 

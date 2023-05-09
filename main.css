@@ -88,7 +88,7 @@ body {
     bottom: 1.5vmax;
     left: 1.5vmax;
     display: grid;
-    grid-template-columns: 8fr 1fr;
+    grid-template-columns: 3fr 1fr;
     grid-template-rows: repeat(5, 1fr);
     grid-column-gap: 2vmin;
     grid-row-gap: 0.2vmin;

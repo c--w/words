@@ -3,7 +3,7 @@ function share() {
     copyText.select();
     document.execCommand("Copy");
     if (isMobileDevice()) {
-        let text = "Solve this if you can: \n" + copyText.value;
+        let text = "Solve if you can: \n" + copyText.value;
         let shareData = { title: "Words", text: text };
         try {
             window.Android.share(text);

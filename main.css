@@ -1,9 +1,5 @@
 @import url("bootstrap-icons.css");
 
-:root {
-    --lw: 10vw;
-}
-
 html {
     font-size: min(4vw, 26px);
 }
@@ -31,7 +27,6 @@ body {
 
 #letters_div {
     align-self: center;
-    font-size: calc(var(--lw)/2);
     margin-top: 10vh;
 
 }
@@ -40,7 +35,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 75vmin;
+    height: 60vmin;
 }
 
 .letter {
@@ -49,8 +44,6 @@ body {
     align-content: center;
     flex-direction: column;
     text-align: center;
-    width: var(--lw);
-    height: var(--lw);
     margin: 1vw;
     border: 0.5vmin dashed #555;
     overflow: hidden;
@@ -78,7 +71,7 @@ body {
     background-color: goldenrod;
     transition: all 0.5s cubic-bezier(0.5, -0.5, 0.5, 2);
     border: 0;
-    box-shadow: 0px 0px calc(var(--lw)/5) 0px gold;
+    box-shadow: 0px 0px 5vmin 0px gold;
     transition: all .5s ease-out;
     border-radius: 5%;
 }
@@ -95,15 +88,19 @@ body {
     bottom: 1.5vmax;
     left: 1.5vmax;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 8fr 1fr;
     grid-template-rows: repeat(5, 1fr);
     grid-column-gap: 2vmin;
     grid-row-gap: 0.2vmin;
 }
 
+#stats span:nth-child(even) {
+    text-align: end;
+}
+
 #seed {
     font-weight: 400;
-    font-size: 2vmax;
+    font-size: min(2.5vmax, 20px);
     position: fixed;
     bottom: 1.5vmax;
     right: 1.5vmax;

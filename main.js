@@ -55,7 +55,6 @@ function initGame() {
     startseed = seed;
     let seed_url;
     seed_url = letters + level + startseed;
-    document.querySelector(':root').style.setProperty('--lw', Math.floor((90 - Number(letters)) / letters) + "vw");
 
     var url = window.location.origin + window.location.pathname + "#" + seed_url;
     $("#share-url").val(url);

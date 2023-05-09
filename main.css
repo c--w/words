@@ -79,6 +79,7 @@ body {
     border: 0;
     box-shadow: 0px 0px calc(var(--lw)/5) 0px gold;
     transition: all .5s ease-out;
+    border-radius: 5%;
 }
 
 .effect {
@@ -184,19 +185,19 @@ body {
 }
 
 .row5 div:nth-child(1) {
-    transform: translateX(-40vmin);
+    transform: translateX(-36vmin);
 }
 .row5 div:nth-child(2) {
-    transform: translateX(-20vmin);
+    transform: translateX(-18vmin);
 }
 .row5 div:nth-child(3) {
     transform: translateX(0vmin);
 }
 .row5 div:nth-child(4) {
-    transform: translateX(20vmin);
+    transform: translateX(18vmin);
 }
 .row5 div:nth-child(5) {
-    transform: translateX(40vmin);
+    transform: translateX(36vmin);
 }
 
 .circle5 div:nth-child(1) {

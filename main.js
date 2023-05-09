@@ -46,8 +46,8 @@ function changeGame() {
     games = 0;
     start_time = 0;
     setBckg();
-    $('#letters_div').removeClass('circle4 circle5 circle6 circle7');
     $('#letters_div').removeClass('row4 row5 row6 row7');
+    $('#letters_div').removeClass('circle4 circle5 circle6 circle7');
     initGame();
 }
 

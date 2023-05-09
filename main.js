@@ -11,6 +11,7 @@ var startseed;
 var letters;
 var level;
 var last_selected;
+var css_transforms = new Array(7);
 function init() {
     document.onclick = (event) => handleClick(event);
     initSeed();
@@ -46,6 +47,7 @@ function changeGame() {
     start_time = 0;
     setBckg();
     $('#letters_div').removeClass('circle4 circle5 circle6 circle7');
+    $('#letters_div').removeClass('row4 row5 row6 row7');
     initGame();
 }
 
@@ -96,13 +98,21 @@ function updateStats() {
 
 function fillLetters(letters_arr) {
     $('#letters_div').empty();
-    $('#letters_div').addClass('circle').addClass("circle"+letters);
+    $('#letters_div').addClass("row" + letters);
     letters_arr.forEach((l, i) => {
         var div = $('<div class="letter">' + l + '</div>');
         div.data('l', l);
         div.data('i', i);
         $('#letters_div').append(div)
     })
+    setTimeout(() => {
+        for (let i = 0; i < letters; i++) {
+            const target_css = $('.letter:nth-of-type(' + (i + 1) + ')').css('transform');
+            css_transforms[i] = target_css;
+        }        
+        $('#letters_div').addClass("circle" + letters);
+    }, 0)
+
 }
 function handleClick(event) {
     let el = $(event.target);
@@ -132,15 +142,18 @@ function handleClick(event) {
         if (undo_stack.length == letters) {
             if (undo_stack.join() == guess_word.join()) {
                 //fillLetters(guess_word)
-                $('#letters_div').removeClass('circle'+letters).removeClass('circle');
-                setTimeout(animateLetters, 400)
+                setTimeout(() => {
+                    $('#letters_div').removeClass('circle'+letters);
+                }, 620)
+
+                setTimeout(animateLetters, 310)
                 setTimeout(() => {
                     $('.letter').addClass('winner');
-                }, 350)
+                }, 500)
                 games++;
                 last_time = Math.round((Date.now() - start_time) / 1000);
                 total_time += last_time;
-                setTimeout(initGame, 2000);
+                setTimeout(initGame, 3000);
             } else {
                 undo_stack = [];
                 undo_stack_elem = [];
@@ -156,18 +169,11 @@ function randomsort(a, b) {
 
 function animateLetters() {
     for (let i = 0; i < letters; i++) {
-        const target = document.querySelector('.letter:nth-of-type(' + (i + 1) + ')');
-        const source = document.querySelector('.letter:nth-of-type(' + ($(undo_stack_elem[i]).data('i') + 1) + ')');
+        const source = $('.letter:nth-of-type(' + ($(undo_stack_elem[i]).data('i') + 1) + ')');
 
-        const targetRect = target.getBoundingClientRect();
-        const sourceRect = source.getBoundingClientRect();
-
-        const deltaX = targetRect.left - sourceRect.left;
-        const deltaY = targetRect.top - sourceRect.top;
-        console.log(deltaX, deltaY);
-        setTimeout((source, deltaX, deltaY) => {
-            $(source).css('transform', `translate(${deltaX}px, ${deltaY}px)`);
-        }, 10, source, deltaX, deltaY);
+        setTimeout((source, i) => {
+            $(source).css('transform',  css_transforms[i]);
+        }, 10, source, i);
         /*
         source.animate(
             [

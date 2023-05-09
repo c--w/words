@@ -10,6 +10,7 @@ html {
 
 * {
     transition: all .3s ease-out;
+    transition: transform .8s ease-out;
     box-sizing: border-box;
 }
 
@@ -54,6 +55,8 @@ body {
     overflow: hidden;
     cursor: pointer;
     border-radius: 50%;
+    position: absolute;
+
 }
 
 .selected {
@@ -111,16 +114,26 @@ body {
     top: -1000px;
 }
 
-.circle {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 75vmin;
-    width: 100vmin;
-}
 
-.circle div {
-    position: absolute;
+.row4 div {
+    height: 18vw;
+    width: 18vw;
+    font-size: 8vw;
+}
+.row5 div {
+    height: 16vw;
+    width: 16vw;
+    font-size: 6vw;
+}
+.row6 div {
+    height: 14vw;
+    width: 14vw;
+    font-size: 6vw;
+}
+.row7 div {
+    height: 12vw;
+    width: 12vw;
+    font-size: 4vw;
 }
 
 .circle4 div {
@@ -144,6 +157,19 @@ body {
     font-size: 6vmin;
 }
 
+.row4 div:nth-child(1) {
+    transform: translateX(-30vw);
+}
+.row4 div:nth-child(2) {
+    transform: translateX(-10vw);
+}
+.row4 div:nth-child(3) {
+    transform: translateX(10vw);
+}
+.row4 div:nth-child(4) {
+    transform: translateX(30vw);
+}
+
 .circle4 div:nth-child(1) {
     transform: rotate(-90deg) translate(25vmin) rotate(90deg);
 }
@@ -155,6 +181,22 @@ body {
 }
 .circle4 div:nth-child(4) {
     transform: rotate(180deg) translate(25vmin) rotate(-180deg);
+}
+
+.row5 div:nth-child(1) {
+    transform: translateX(-40vmin);
+}
+.row5 div:nth-child(2) {
+    transform: translateX(-20vmin);
+}
+.row5 div:nth-child(3) {
+    transform: translateX(0vmin);
+}
+.row5 div:nth-child(4) {
+    transform: translateX(20vmin);
+}
+.row5 div:nth-child(5) {
+    transform: translateX(40vmin);
 }
 
 .circle5 div:nth-child(1) {
@@ -171,6 +213,25 @@ body {
 }
 .circle5 div:nth-child(5) {
     transform: rotate(198deg) translate(25vmin) rotate(-198deg);
+}
+
+.row6 div:nth-child(1) {
+    transform: translateX(-40vmin);
+}
+.row6 div:nth-child(2) {
+    transform: translateX(-24vmin);
+}
+.row6 div:nth-child(3) {
+    transform: translateX(-8vmin);
+}
+.row6 div:nth-child(4) {
+    transform: translateX(8vmin);
+}
+.row6 div:nth-child(5) {
+    transform: translateX(24vmin);
+}
+.row6 div:nth-child(6) {
+    transform: translateX(40vmin);
 }
 
 .circle6 div:nth-child(1) {
@@ -190,6 +251,28 @@ body {
 }
 .circle6 div:nth-child(6) {
     transform: rotate(210deg) translate(25vmin) rotate(-210deg);
+}
+
+.row7 div:nth-child(1) {
+    transform: translateX(-42vmin);
+}
+.row7 div:nth-child(2) {
+    transform: translateX(-28vmin);
+}
+.row7 div:nth-child(3) {
+    transform: translateX(-14vmin);
+}
+.row7 div:nth-child(4) {
+    transform: translateX(0vmin);
+}
+.row7 div:nth-child(5) {
+    transform: translateX(14vmin);
+}
+.row7 div:nth-child(6) {
+    transform: translateX(28vmin);
+}
+.row7 div:nth-child(7) {
+    transform: translateX(42vmin);
 }
 
 .circle7 div:nth-child(1) {

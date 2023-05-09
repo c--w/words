@@ -255,25 +255,25 @@ body {
 }
 
 .row7 div:nth-child(1) {
-    transform: translateX(-42vmin);
+    transform: translateX(-40.5vmin);
 }
 .row7 div:nth-child(2) {
-    transform: translateX(-28vmin);
+    transform: translateX(-27vmin);
 }
 .row7 div:nth-child(3) {
-    transform: translateX(-14vmin);
+    transform: translateX(-13.5vmin);
 }
 .row7 div:nth-child(4) {
     transform: translateX(0vmin);
 }
 .row7 div:nth-child(5) {
-    transform: translateX(14vmin);
+    transform: translateX(13.5vmin);
 }
 .row7 div:nth-child(6) {
-    transform: translateX(28vmin);
+    transform: translateX(27vmin);
 }
 .row7 div:nth-child(7) {
-    transform: translateX(42vmin);
+    transform: translateX(40.5vmin);
 }
 
 .circle7 div:nth-child(1) {

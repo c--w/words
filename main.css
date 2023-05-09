@@ -185,19 +185,19 @@ body {
 }
 
 .row5 div:nth-child(1) {
-    transform: translateX(-36vmin);
+    transform: translateX(-36vw);
 }
 .row5 div:nth-child(2) {
-    transform: translateX(-18vmin);
+    transform: translateX(-18vw);
 }
 .row5 div:nth-child(3) {
-    transform: translateX(0vmin);
+    transform: translateX(0vw);
 }
 .row5 div:nth-child(4) {
-    transform: translateX(18vmin);
+    transform: translateX(18vw);
 }
 .row5 div:nth-child(5) {
-    transform: translateX(36vmin);
+    transform: translateX(36vw);
 }
 
 .circle5 div:nth-child(1) {
@@ -217,22 +217,22 @@ body {
 }
 
 .row6 div:nth-child(1) {
-    transform: translateX(-40vmin);
+    transform: translateX(-40vw);
 }
 .row6 div:nth-child(2) {
-    transform: translateX(-24vmin);
+    transform: translateX(-24vw);
 }
 .row6 div:nth-child(3) {
-    transform: translateX(-8vmin);
+    transform: translateX(-8vw);
 }
 .row6 div:nth-child(4) {
-    transform: translateX(8vmin);
+    transform: translateX(8vw);
 }
 .row6 div:nth-child(5) {
-    transform: translateX(24vmin);
+    transform: translateX(24vw);
 }
 .row6 div:nth-child(6) {
-    transform: translateX(40vmin);
+    transform: translateX(40vw);
 }
 
 .circle6 div:nth-child(1) {
@@ -255,25 +255,25 @@ body {
 }
 
 .row7 div:nth-child(1) {
-    transform: translateX(-40.5vmin);
+    transform: translateX(-40.5vw);
 }
 .row7 div:nth-child(2) {
-    transform: translateX(-27vmin);
+    transform: translateX(-27vw);
 }
 .row7 div:nth-child(3) {
-    transform: translateX(-13.5vmin);
+    transform: translateX(-13.5vw);
 }
 .row7 div:nth-child(4) {
-    transform: translateX(0vmin);
+    transform: translateX(0vw);
 }
 .row7 div:nth-child(5) {
-    transform: translateX(13.5vmin);
+    transform: translateX(13.5vw);
 }
 .row7 div:nth-child(6) {
-    transform: translateX(27vmin);
+    transform: translateX(27vw);
 }
 .row7 div:nth-child(7) {
-    transform: translateX(40.5vmin);
+    transform: translateX(40.5vw);
 }
 
 .circle7 div:nth-child(1) {

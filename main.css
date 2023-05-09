@@ -20,6 +20,7 @@ body {
     justify-content: center;
     flex-direction: column;
     font-weight: 900;
+    color: #444;
     background-color: beige;
 }
 
@@ -51,7 +52,7 @@ body {
     width: var(--lw);
     height: var(--lw);
     margin: 1vw;
-    border: 0.5vmin dashed black;
+    border: 0.5vmin dashed #555;
     overflow: hidden;
     cursor: pointer;
     border-radius: 50%;

@@ -75,7 +75,7 @@ function scrambleAndFill() {
 
 function hint() {
     start_time -= 20*1000*(undo_stack.length+1);
-    let elem = $('.letter').toArray().find(l => $(l).data('l') == guess_word[undo_stack.length]);
+    let elem = $('.letter:not(.selected):not(.past-selected)').toArray().find(l => $(l).data('l') == guess_word[undo_stack.length]);
     handleClick({target: elem});
     hint_ind++;
 }

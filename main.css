@@ -82,7 +82,7 @@ body {
 }
 
 #stats {
-    font-size: min(2.5vmax, 18px);
+    font-size: min(2.5vmax, 20px);
     font-weight: 400;
     position: fixed;
     bottom: 1.5vmax;
@@ -100,7 +100,7 @@ body {
 
 #seed {
     font-weight: 400;
-    font-size: min(2.5vmax, 20px);
+    font-size: min(2.5vmax, 24px);
     position: fixed;
     bottom: 1.5vmax;
     right: 1.5vmax;

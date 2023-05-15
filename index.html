@@ -2,6 +2,14 @@
 <html>
 
 <head>
+  <script>
+    if (navigator.serviceWorker) {
+      navigator.serviceWorker.register(
+        '/words/sw.js?r='+Math.random(),
+        { scope: '/words/' }
+      )
+    }
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport"
     content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
@@ -56,14 +64,6 @@
     <i class="bi bi-share"></i>
   </div>
   <input id="share-url" type="text">
-  <script>
-    if (navigator.serviceWorker) {
-      navigator.serviceWorker.register(
-        '/words/sw.js?r='+Math.random(),
-        { scope: '/words/' }
-      )
-    }
-  </script>
 
   <script src="jquery-3.6.4.min.js"></script>
   <script src="bootstrap.min.js"></script>

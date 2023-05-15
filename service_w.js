@@ -9,7 +9,7 @@ var APP_PREFIX = 'words_';
 // you need to change this version (version_01, version_02…). 
 // If you don't change the version, the service worker will give your
 // users the old files!
-var VERSION = 'version_32';
+var VERSION = 'version_33';
 
 // The files to make available for offline use. make sure to add 
 // others to this list
@@ -39,7 +39,7 @@ var URLS = [
     `${GHPATH}/manifest.json`,
     `${GHPATH}/utils.js`
 ]
-
+/*
 self.addEventListener('fetch', function (event) {
     event.respondWith(
         fetch(event.request.url,  { cache: "reload" }).then(function (response) {
@@ -50,7 +50,7 @@ self.addEventListener('fetch', function (event) {
         }),
     );
 });
-/*
+*/
 self.addEventListener('fetch', function (e) {
     console.log('Fetch request : ' + e.request.url);
     e.respondWith(
@@ -65,7 +65,7 @@ self.addEventListener('fetch', function (e) {
       })
     )
   })
-  */
+  
 var CACHE_NAME = APP_PREFIX + VERSION;
 self.addEventListener('install', function (e) {
     e.waitUntil(

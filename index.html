@@ -5,7 +5,7 @@
   <script>
     if (navigator.serviceWorker) {
       navigator.serviceWorker.register(
-        '/words/sw.js?r='+Math.random(),
+        '/words/service_w.js?r='+Math.random(),
         { scope: '/words/' }
       )
     }

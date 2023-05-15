@@ -41,9 +41,8 @@ var URLS = [
 ]
 
 self.addEventListener('fetch', function (event) {
-    let request = new Request(event.request.url, {cache: "reload"});
     event.respondWith(
-        fetch(request).then(function (response) {
+        fetch(event.request.url,  { cache: "reload" }).then(function (response) {
             cache.put(request, response.clone());
             return response;
         }).catch(function () {

@@ -49,8 +49,6 @@ self.addEventListener('fetch', function (e) {
           return request
         } else {       
           console.log('File is not cached, fetching : ' + e.request.url);
-          e.reqest.headers.append('pragma', 'no-cache');
-          e.reqest.headers.append('cache-control', 'no-cache');
           return fetch(e.request)
         }
       })

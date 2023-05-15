@@ -29,7 +29,6 @@ var URLS = [
   `${GHPATH}/favicon-16x16.png`,
   `${GHPATH}/favicon-32x32.png`,
   `${GHPATH}/favicon.ico`,
-  `${GHPATH}/index.html`,
   `${GHPATH}/jquery-3.6.4.min.js`,
   `${GHPATH}/hrdict1.js`,
   `${GHPATH}/hrdict2.js`,

@@ -59,7 +59,7 @@
   <script>
     if (navigator.serviceWorker) {
       navigator.serviceWorker.register(
-        '/words/sw.js',
+        '/words/sw.js?r='+Math.random(),
         { scope: '/words/' }
       )
     }

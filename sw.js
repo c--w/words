@@ -9,7 +9,7 @@ var APP_PREFIX = 'words_';
 // you need to change this version (version_01, version_02…). 
 // If you don't change the version, the service worker will give your
 // users the old files!
-var VERSION = 'version_27';
+var VERSION = 'version_28';
  
 // The files to make available for offline use. make sure to add 
 // others to this list
@@ -49,6 +49,8 @@ self.addEventListener('fetch', function (e) {
           return request
         } else {       
           console.log('File is not cached, fetching : ' + e.request.url);
+          e.reqest.headers.append('pragma', 'no-cache');
+          e.reqest.headers.append('cache-control', 'no-cache');
           return fetch(e.request)
         }
       })

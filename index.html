@@ -35,11 +35,14 @@
     <button id="reload" class="btn btn-outline-secondary" onclick="hint();">
       <i class="bi bi-lightbulb-fill"></i>
     </button>
-    <select id="letters" class="form-select" name="letters">
+    <select id="gamemode" class="form-select" name="gamemode">
       <option value="4">4 slova</option>
       <option value="5" selected>5 slova</option>
       <option value="6">6 slova</option>
       <option value="7">7 slova</option>
+      <option value="8">5 sl. sve riječi</option>
+      <option value="9">6 sl. sve riječi</option>
+      <option value="10">7 sl. sve riječi</option>
     </select>
     <select id="level" class="form-select" name="level">
       <option value="1">Nivo 1</option>
@@ -52,7 +55,9 @@
     </button>
   </div>
 
+  <div id="all_words_div"></div>
   <div id="letters_div" class="circle5"></div>
+  <div id="clear_div" class="btn" onclick="reset()"><i class="bi bi-x-circle"></i></div>
   <div id="stats">
     <span>N:</span> <span id="games">0</span>
     <span>T: </span><span id="last">0</span>

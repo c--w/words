@@ -81,6 +81,43 @@ body {
     transition: all 0.1s cubic-bezier(0.5, -0.5, 0.5, 2);
 }
 
+#all_words_div {
+    margin-top: 2vh;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+#all_words_div div {
+    margin: 1vmin;
+    padding: 1vmin;
+    border: 0.2vmin dashed #555;
+    color: #eee;
+    background-color: #eee;
+    font-family: monospace;
+    font-weight: bold;
+    transition: color 1.5s;
+}
+#all_words_div div.found {
+    background-color: #fff;
+    color: #555;
+    border: 0.2vmin solid gold;
+}
+#clear_div {
+    font-size: xx-large;
+    margin-top: 5vh;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+
+
+#all_words_div div.break {
+    flex-basis: 100%;
+    height: 0;
+    border: 0;
+    padding:0;
+}
+
 #stats {
     font-size: min(2.5vmax, 20px);
     font-weight: 400;

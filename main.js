@@ -1,5 +1,6 @@
 onload = (event) => init();
 var guess_word;
+var all_guess_words;
 var undo_stack = [];
 var undo_stack_elem = [];
 var last_time = 0;
@@ -9,36 +10,41 @@ var start_time = 0;
 var seed;
 var startseed;
 var letters;
+var gamemode;
 var level;
 var last_selected;
 var css_transforms = new Array(7);
 function init() {
     document.onclick = (event) => handleClick(event);
     initSeed();
-    if (!letters) {// try cookie
-        letters = Number(getCookie("letters"));
+    if (!gamemode) {// try cookie
+        gamemode = Number(getCookie("gamemode"));
         level = Number(getCookie("level"));
     }
-    if (isNaN(letters)) { // try select
-        letters = $("#letters").val();
+    if (isNaN(gamemode)) { // try select
+        gamemode = $("#gamemode").val();
         level = $("#level").val();
     }
-    if (letters < 4)
-        letters = 5;
+    if (gamemode < 4)
+        gamemode = 5;
     if (level < 1)
         level = 1;
-    $("#letters").val(letters);
+    $("#gamemode").val(gamemode);
     $("#level").val(level);
-    setCookie("letters", letters, 730);
+    setCookie("gamemode", gamemode, 730);
     setCookie("level", level, 730);
-    $("#letters").on("change", changeGame);
+    $("#gamemode").on("change", changeGame);
     $("#level").on("change", changeGame);
     changeGame();
 }
 
 function changeGame() {
-    letters = $("#letters").val();
-    setCookie("letters", letters, 730);
+    gamemode = Number($("#gamemode").val());
+    if(gamemode > 7)
+        letters = gamemode - 3;
+    else
+        letters = gamemode;
+    setCookie("gamemode", gamemode, 730);
     level = $("#level").val();
     setCookie("level", level, 730);
     last_time = 0;
@@ -54,19 +60,42 @@ function changeGame() {
 function initGame() {
     startseed = seed;
     let seed_url;
-    seed_url = letters + level + startseed;
+    seed_url = gamemode + level + startseed;
 
     var url = window.location.origin + window.location.pathname + "#" + seed_url;
     $("#share-url").val(url);
     $("#seed").attr('title', startseed);
     guess_word = getRandomWord();
+    if(gamemode > 7) {
+        findAllGuessWords();
+        showAllWords();
+        $('#clear_div').show();
+    } else {
+        $('#clear_div').hide();
+    }
     scrambleAndFill();
     updateStats();
     start_time = Date.now();
 }
 
+function showAllWords() {
+    $('#all_words_div').empty();
+    let prev_len = 4;
+    Array.from(all_guess_words).forEach(w => {
+        if(cdl(w).length != prev_len) {
+            $('#all_words_div').append('<div class="break">');
+            prev_len++;    
+        }
+        let div = $('<div>');
+        div.html(w);
+        div.attr('word', w);
+        $('#all_words_div').append(div);
+    });
+}
+
 function scrambleAndFill() {
     let scrambled_word = [...guess_word].sort(randomsort).sort(randomsort);
+    
     fillLetters(scrambled_word);
     undo_stack = [];
     undo_stack_elem = [];
@@ -76,7 +105,12 @@ function scrambleAndFill() {
 
 function hint() {
     start_time -= 20*1000*(undo_stack.length+1);
-    let elem = $('.letter:not(.selected):not(.past-selected)').toArray().find(l => $(l).data('l') == guess_word[undo_stack.length]);
+    let word;
+    if(gamemode<8)
+        word = guess_word;
+    else 
+        word = Array.from(all_guess_words)[0];
+    let elem = $('.letter:not(.selected):not(.past-selected)').toArray().find(l => $(l).data('l') == word[undo_stack.length]);
     handleClick({target: elem});
     hint_ind++;
 }
@@ -89,7 +123,7 @@ function updateStats() {
         return;
     let avg = Math.round(total_time / games);
     $("#avg").text(avg);
-    let key = 'words' + games + '-' + letters + '-' + level;
+    let key = 'words' + games + '-' + gamemode + '-' + level;
     let best = localStorage.getItem(key);
     if (best) {
         best = Number(best);
@@ -123,6 +157,7 @@ function fillLetters(letters_arr) {
     }, 0)
 
 }
+
 function handleClick(event) {
     let el = $(event.target);
     if (el.hasClass('letter')) {
@@ -148,8 +183,27 @@ function handleClick(event) {
         last_selected = el;
         undo_stack.push(el.data('l'));
         undo_stack_elem.push(el);
-        if (undo_stack.length == letters) {
-            if (undo_stack.join() == guess_word.join()) {
+        if(gamemode > 7) {
+            let word = undo_stack.join('');
+            if (undo_stack.length >=4 && all_guess_words.has(word)) {
+                $('#all_words_div div[word='+word+']').addClass('found');
+                all_guess_words.delete(word);
+                if(all_guess_words.size == 0) {
+                    setTimeout(() => {
+                        $('#all_words_div div').addClass('winner');
+                    }, 500)
+                    games++;
+                    last_time = Math.round((Date.now() - start_time) / 1000);
+                    total_time += last_time;
+                    setTimeout(initGame, 3000);
+                } else {
+                    setTimeout(reset, 1000);
+                }
+            } else if(undo_stack.length == letters) {
+                setTimeout(reset, 1000);
+            }
+        } else if (undo_stack.length == letters) {
+            if (undo_stack.join('') == guess_word.join('')) {
                 //fillLetters(guess_word)
                 setTimeout(() => {
                     $('#letters_div').removeClass('circle'+letters);
@@ -164,14 +218,18 @@ function handleClick(event) {
                 total_time += last_time;
                 setTimeout(initGame, 3000);
             } else {
-                undo_stack = [];
-                undo_stack_elem = [];
-                last_selected = null;
-                $('.letter').removeClass('selected').removeClass('past-selected')
+                reset();
             }
         }
     }
 }
+function reset() {
+    undo_stack = [];
+    undo_stack_elem = [];
+    last_selected = null;
+    $('.letter').removeClass('selected').removeClass('past-selected')
+}
+
 function randomsort(a, b) {
     return Math.random() * 2 - 1;
 }
@@ -195,7 +253,7 @@ function rand() {
 
 function initSeed() {
     if (window.location.hash) {
-        letters = Number(window.location.hash.substring(1, 2))
+        gamemode = Number(window.location.hash.substring(1, 2))
         level = Number(window.location.hash.substring(2, 3))
         seed = window.location.hash.substring(3);
         seed = Number(seed)
@@ -208,22 +266,45 @@ function initSeed() {
 }
 
 
+var dw;
 function getRandomWord() {
-    let dw;
     if (level == 1) dw = hrdict1;
     else if (level == 2) dw = hrdict2;
     else if (level == 3) dw = hrdict3;
     else if (level == 4) dw = endict;
     let filtered = dw.filter((word) => {
-        word = convertDoubleLetters(word);
+        word = cdl(word);
         return word.length == letters;
     });
     let i = Math.floor(rand() * filtered.length);
     let word = filtered[i];
-    return convertDoubleLetters(word);
+    return cdl(word);
 }
 
-function convertDoubleLetters(s) {
+function findAllGuessWords() {
+    all_guess_words = new Set();
+    for(let i = 4; i<=letters; i++) {
+        takeLetter(guess_word, i, []);
+    }
+    console.table(Array.from(all_guess_words));
+}
+
+function takeLetter(letters_left, len, taken) {
+    for(let i = 0; i < letters_left.length; i++) {
+        let letters = [...letters_left]; 
+        let taken2 = [...taken];
+        taken2.push(letters[i]);
+        if(taken2.length<len) {
+            takeLetter(letters.slice(i+1), len, taken2)
+        } else {
+            let t = taken2.sort().join('');
+            dw.filter(word => cdl(word).sort().join('') == t).forEach(w => all_guess_words.add(w))
+        }
+    }
+}
+
+
+function cdl(s) {
     var result = [];
     let tmp = s.split(/(NJ|LJ|DŽ)/);
     tmp.forEach((a) => {

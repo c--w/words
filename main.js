@@ -186,6 +186,12 @@ function handleClick(event) {
         if(gamemode > 7) {
             let word = undo_stack.join('');
             if (undo_stack.length >=4 && all_guess_words.has(word)) {
+                setTimeout(()=>{
+                    $('.selected,.past-selected').addClass('success');    
+                }, 0);
+                setTimeout(()=>{
+                    $('.selected,.past-selected').removeClass('success');    
+                }, 1000);
                 $('#all_words_div div[word='+word+']').addClass('found');
                 all_guess_words.delete(word);
                 if(all_guess_words.size == 0) {

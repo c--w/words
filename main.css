@@ -50,7 +50,6 @@ body {
     cursor: pointer;
     border-radius: 50%;
     position: absolute;
-
 }
 
 .selected {
@@ -75,7 +74,10 @@ body {
     transition: all .5s ease-out;
     border-radius: 5%;
 }
-
+.success {
+    background-color: goldenrod;
+    transition: all 0.25s cubic-bezier(0.5, -0.5, 0.5, 2);
+}
 .effect {
     background-color: gray;
     transition: all 0.1s cubic-bezier(0.5, -0.5, 0.5, 2);
@@ -88,12 +90,12 @@ body {
     flex-wrap: wrap;
 }
 #all_words_div div {
-    margin: 1vmin;
+    margin: 0.5vmin;
     padding: 1vmin;
     border: 0.2vmin dashed #555;
     color: #eee;
     background-color: #eee;
-    font-family: monospace;
+    font-family: 'Roboto Mono', monospace;
     font-weight: bold;
     transition: color 1.5s;
     position: relative;
@@ -120,7 +122,7 @@ body {
 
 #clear_div {
     font-size: xx-large;
-    margin-top: 5vh;
+    margin-top: 1vh;
     display: flex;
     justify-content: center;
     cursor: pointer;
@@ -135,7 +137,7 @@ body {
 }
 
 #stats {
-    font-size: min(2.5vmax, 20px);
+    font-size: min(3vmin, 18px);
     font-weight: 400;
     position: fixed;
     bottom: 1.5vmax;
@@ -144,7 +146,8 @@ body {
     grid-template-columns: 3fr 1fr;
     grid-template-rows: repeat(5, 1fr);
     grid-column-gap: 2vmin;
-    grid-row-gap: 0.2vmin;
+    grid-row-gap: 0;
+    max-width: 25%;
 }
 
 #stats span:nth-child(even) {

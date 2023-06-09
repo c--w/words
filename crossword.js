@@ -40,34 +40,36 @@ function fillBoard(words) { //instantiator object for making gameboards
     function placeWord(word, xf, yf) {
         let best_score = -1;
         let best_coord = { l: word.length, all: [] };
-        for (let x = minx - word.length * xf; x < N - word.length * xf; x++) {
-            for (let y = miny - word.length * yf; y < N - word.length * yf; y++) {
-                let score = 0;
-                for (let i = 0; i < word.length; i++) {
-                    let c = word[i];
-                    let xx = x + i * xf;
-                    let yy = y + i * yf;
-                    if (grid[yy][xx] == c) {
-                        if (coords.find((coord, ii) => {
-                            let yyf = ii % 2;
-                            let xxf = 1 - yyf;
-                            return yyf == yf && coord.all.find(c => c.x == xx && c.y == yy);
-                        })) { // never use chars of same oriented word
-                            score = -1;
-                            break;
-                        } else {
-                            score++;
-                        }
-                    } else if (grid[y + i * yf][x + i * xf] != '') { // clash with another word
+        let NN = N - 8;
+        for (let cnt = 0; cnt < NN * NN; cnt++) {
+            let iii = (397 * cnt) % (NN * NN);
+            let x = iii % NN;
+            let y = Math.floor(iii / NN);
+            let score = 0;
+            for (let i = 0; i < word.length; i++) {
+                let c = word[i];
+                let xx = x + i * xf;
+                let yy = y + i * yf;
+                if (grid[yy][xx] == c) {
+                    if (coords.find((coord, ii) => {
+                        let yyf = ii % 2;
+                        let xxf = 1 - yyf;
+                        return yyf == yf && coord.all.find(c => c.x == xx && c.y == yy);
+                    })) { // never use chars of same oriented word
                         score = -1;
                         break;
+                    } else {
+                        score++;
                     }
+                } else if (grid[y + i * yf][x + i * xf] != '') { // clash with another word
+                    score = -1;
+                    break;
                 }
-                if (score > best_score) {
-                    best_score = score;
-                    best_coord.x = x;
-                    best_coord.y = y;
-                }
+            }
+            if (score > best_score) {
+                best_score = score;
+                best_coord.x = x;
+                best_coord.y = y;
             }
         }
         for (let i = 0; i < word.length; i++) {
@@ -100,7 +102,7 @@ function fillBoard(words) { //instantiator object for making gameboards
     $('#all_words_div').empty();
     $('#all_words_div').css("grid-template-columns", "repeat(" + cols + ", min(" + width + "vmin, 60px))");
     $('#all_words_div').css("grid-template-rows", "repeat(" + rows + ", min(" + width + "vmin, 60px))");
-    $('#all_words_div').css("font-size", "min(" + width/2 + "vmin, 30px)");
+    $('#all_words_div').css("font-size", "min(" + width / 2 + "vmin, 30px)");
     for (var i = 0; i < rows; i++) {
         grid2[i] = new Array(cols);
         for (var j = 0; j < cols; j++) {

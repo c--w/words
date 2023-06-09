@@ -31,6 +31,19 @@ function isMobileDevice() {
     return check;
 }
 
+function cdl(s) {
+    var result = [];
+    let tmp = s.split(/(NJ|LJ|DŽ)/);
+    tmp.forEach((a) => {
+        if (a.match(/(NJ|LJ|DŽ)/)) {
+            result.push(a);
+        } else {
+            result.push(...a.split(""));
+        }
+    });
+    return result;
+}
+
 
 var g_patterns = [
     "45degreee_fabric",

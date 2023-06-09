@@ -16,7 +16,7 @@ body {
     justify-content: center;
     flex-direction: column;
     font-weight: 900;
-    color: #444444; 
+    color: #444444;
     background-color: beige;
 }
 
@@ -28,7 +28,7 @@ body {
 #letters_div {
     align-self: center;
     margin-top: 10vh;
-
+    z-index: 1;
 }
 
 #letters_div {
@@ -74,10 +74,12 @@ body {
     transition: all .5s ease-out;
     border-radius: 5%;
 }
+
 .success {
     background-color: goldenrod;
     transition: all 0.25s cubic-bezier(0.5, -0.5, 0.5, 2);
 }
+
 .effect {
     background-color: gray;
     transition: all 0.1s cubic-bezier(0.5, -0.5, 0.5, 2);
@@ -88,54 +90,42 @@ body {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(1, min(6vw, 40px));
+    grid-template-rows: repeat(1, min(6vw, 40px));
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;    
 }
+
 #all_words_div div {
-    margin: 0.5vmin;
-    padding: 1vmin;
-    border: 0.2vmin dashed #555;
-    color: #eee;
-    background-color: #eee;
+    margin: 0.2vmin;
+    padding: 0.6vmin;
+    color: #0000;
     font-family: 'Roboto Mono', monospace;
     font-weight: bold;
     transition: color 1.5s;
+    border: 0;
+    display: grid;
+    justify-content: center;
+    align-content: center;
     position: relative;
+}
+
+#all_words_div div.full {
+    border: 0.6vmin solid #555;
 }
 #all_words_div div.found {
     background-color: #fff;
     color: #555;
-    border: 0.2vmin solid gold;
 }
-#all_words_div div::after {
+#all_words_div div div.bckg {
     position: absolute;
-    content: " ";
-    width: 100%;
-    height: 100%;
-    background-color: #eee;
-    z-index: 1;
-    display: block;
-    top: 0;
-    left: 0;
-}
-#all_words_div div.found::after {
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
     z-index: -1;
 }
-
-#clear_div {
-    font-size: xx-large;
-    margin-top: 1vh;
-    display: flex;
-    justify-content: center;
-    cursor: pointer;
-}
-
-
-#all_words_div div.break {
-    flex-basis: 100%;
-    height: 0;
-    border: 0;
-    padding:0;
-}
-
 #stats {
     font-size: min(3vmin, 18px);
     font-weight: 400;
@@ -175,16 +165,19 @@ body {
     width: 18vw;
     font-size: 8vw;
 }
+
 .row5 div {
     height: 16vw;
     width: 16vw;
     font-size: 6vw;
 }
+
 .row6 div {
     height: 14vw;
     width: 14vw;
     font-size: 6vw;
 }
+
 .row7 div {
     height: 12vw;
     width: 12vw;
@@ -196,16 +189,19 @@ body {
     width: 28vmin;
     font-size: 10vmin;
 }
+
 .circle5 div {
     height: 24vmin;
     width: 24vmin;
     font-size: 8vmin;
 }
+
 .circle6 div {
     height: 20vmin;
     width: 20vmin;
     font-size: 7vmin;
 }
+
 .circle7 div {
     height: 18vmin;
     width: 18vmin;
@@ -215,12 +211,15 @@ body {
 .row4 div:nth-child(1) {
     transform: translateX(-30vw);
 }
+
 .row4 div:nth-child(2) {
     transform: translateX(-10vw);
 }
+
 .row4 div:nth-child(3) {
     transform: translateX(10vw);
 }
+
 .row4 div:nth-child(4) {
     transform: translateX(30vw);
 }
@@ -228,12 +227,15 @@ body {
 .circle4 div:nth-child(1) {
     transform: rotate(-90deg) translate(25vmin) rotate(90deg);
 }
+
 .circle4 div:nth-child(2) {
     transform: rotate(0deg) translate(25vmin) rotate(0deg);
 }
+
 .circle4 div:nth-child(3) {
     transform: rotate(90deg) translate(25vmin) rotate(-90deg);
 }
+
 .circle4 div:nth-child(4) {
     transform: rotate(180deg) translate(25vmin) rotate(-180deg);
 }
@@ -241,15 +243,19 @@ body {
 .row5 div:nth-child(1) {
     transform: translateX(-36vw);
 }
+
 .row5 div:nth-child(2) {
     transform: translateX(-18vw);
 }
+
 .row5 div:nth-child(3) {
     transform: translateX(0vw);
 }
+
 .row5 div:nth-child(4) {
     transform: translateX(18vw);
 }
+
 .row5 div:nth-child(5) {
     transform: translateX(36vw);
 }
@@ -257,15 +263,19 @@ body {
 .circle5 div:nth-child(1) {
     transform: rotate(-90deg) translate(25vmin) rotate(90deg);
 }
+
 .circle5 div:nth-child(2) {
     transform: rotate(-18deg) translate(25vmin) rotate(18deg);
 }
+
 .circle5 div:nth-child(3) {
     transform: rotate(54deg) translate(25vmin) rotate(-54deg);
 }
+
 .circle5 div:nth-child(4) {
     transform: rotate(126deg) translate(25vmin) rotate(-126deg);
 }
+
 .circle5 div:nth-child(5) {
     transform: rotate(198deg) translate(25vmin) rotate(-198deg);
 }
@@ -273,18 +283,23 @@ body {
 .row6 div:nth-child(1) {
     transform: translateX(-40vw);
 }
+
 .row6 div:nth-child(2) {
     transform: translateX(-24vw);
 }
+
 .row6 div:nth-child(3) {
     transform: translateX(-8vw);
 }
+
 .row6 div:nth-child(4) {
     transform: translateX(8vw);
 }
+
 .row6 div:nth-child(5) {
     transform: translateX(24vw);
 }
+
 .row6 div:nth-child(6) {
     transform: translateX(40vw);
 }
@@ -292,18 +307,23 @@ body {
 .circle6 div:nth-child(1) {
     transform: rotate(-90deg) translate(25vmin) rotate(90deg);
 }
+
 .circle6 div:nth-child(2) {
     transform: rotate(-30deg) translate(25vmin) rotate(30deg);
 }
+
 .circle6 div:nth-child(3) {
     transform: rotate(30deg) translate(25vmin) rotate(-30deg);
 }
+
 .circle6 div:nth-child(4) {
     transform: rotate(90deg) translate(25vmin) rotate(-90deg);
 }
+
 .circle6 div:nth-child(5) {
     transform: rotate(150deg) translate(25vmin) rotate(-150deg);
 }
+
 .circle6 div:nth-child(6) {
     transform: rotate(210deg) translate(25vmin) rotate(-210deg);
 }
@@ -311,21 +331,27 @@ body {
 .row7 div:nth-child(1) {
     transform: translateX(-40.5vw);
 }
+
 .row7 div:nth-child(2) {
     transform: translateX(-27vw);
 }
+
 .row7 div:nth-child(3) {
     transform: translateX(-13.5vw);
 }
+
 .row7 div:nth-child(4) {
     transform: translateX(0vw);
 }
+
 .row7 div:nth-child(5) {
     transform: translateX(13.5vw);
 }
+
 .row7 div:nth-child(6) {
     transform: translateX(27vw);
 }
+
 .row7 div:nth-child(7) {
     transform: translateX(40.5vw);
 }
@@ -333,21 +359,27 @@ body {
 .circle7 div:nth-child(1) {
     transform: rotate(-90deg) translate(25vmin) rotate(90deg);
 }
+
 .circle7 div:nth-child(2) {
     transform: rotate(-38.6deg) translate(25vmin) rotate(38.6deg);
 }
+
 .circle7 div:nth-child(3) {
     transform: rotate(12.8deg) translate(25vmin) rotate(-12.8deg);
 }
+
 .circle7 div:nth-child(4) {
     transform: rotate(64.2deg) translate(25vmin) rotate(-64.2deg);
 }
+
 .circle7 div:nth-child(5) {
     transform: rotate(115.6deg) translate(25vmin) rotate(-115.6deg);
 }
+
 .circle7 div:nth-child(6) {
     transform: rotate(167deg) translate(25vmin) rotate(-167deg);
 }
+
 .circle7 div:nth-child(7) {
     transform: rotate(218.4deg) translate(25vmin) rotate(-218.4deg);
 }

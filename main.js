@@ -1,6 +1,7 @@
 onload = (event) => init();
 var guess_word;
 var all_guess_words;
+var all_guess_words_arr;
 var undo_stack = [];
 var undo_stack_elem = [];
 var last_time = 0;
@@ -68,7 +69,7 @@ function initGame() {
     guess_word = getRandomWord();
     if(gamemode > 7) {
         findAllGuessWords();
-        showAllWords();
+        fillBoard(all_guess_words_arr);
         $('#clear_div').show();
     } else {
         $('#clear_div').hide();
@@ -76,21 +77,6 @@ function initGame() {
     scrambleAndFill();
     updateStats();
     start_time = Date.now();
-}
-
-function showAllWords() {
-    $('#all_words_div').empty();
-    let prev_len = 4;
-    Array.from(all_guess_words).forEach(w => {
-        if(cdl(w).length != prev_len) {
-            $('#all_words_div').append('<div class="break">');
-            prev_len++;    
-        }
-        let div = $('<div>');
-        div.html(w);
-        div.attr('word', w);
-        $('#all_words_div').append(div);
-    });
 }
 
 function scrambleAndFill() {
@@ -192,11 +178,21 @@ function handleClick(event) {
                 setTimeout(()=>{
                     $('.selected,.past-selected').removeClass('success');    
                 }, 1000);
-                $('#all_words_div div[word='+word+']').addClass('found');
+                let ind = all_guess_words_arr.findIndex(w => w==word);
+                let coord = coords[ind];
+                let yf = ind % 2;
+                let xf = 1 - yf;
+                let all_divs = $($('#all_words_div > div'));
+                for(let j=0; j<coord.l; j++) {
+                    let xx = coord.x + j * xf;
+                    let yy = coord.y + j * yf;
+                    let div = $(all_divs[yy*g_cols+xx])
+                    div.css("color", "#555")
+                }
                 all_guess_words.delete(word);
                 if(all_guess_words.size == 0) {
                     setTimeout(() => {
-                        $('#all_words_div div').addClass('winner');
+                        $('#all_words_div > div.full').addClass('winner');
                     }, 500)
                     games++;
                     last_time = Math.round((Date.now() - start_time) / 1000);
@@ -292,6 +288,7 @@ function findAllGuessWords() {
     for(let i = 4; i<=letters; i++) {
         takeLetter(guess_word, i, []);
     }
+    all_guess_words_arr = Array.from(all_guess_words);
     console.table(Array.from(all_guess_words));
 }
 
@@ -307,20 +304,6 @@ function takeLetter(letters_left, len, taken) {
             dw.filter(word => cdl(word).sort().join('') == t).forEach(w => all_guess_words.add(w))
         }
     }
-}
-
-
-function cdl(s) {
-    var result = [];
-    let tmp = s.split(/(NJ|LJ|DŽ)/);
-    tmp.forEach((a) => {
-        if (a.match(/(NJ|LJ|DŽ)/)) {
-            result.push(a);
-        } else {
-            result.push(...a.split(""));
-        }
-    });
-    return result;
 }
 
 function setBckg() {

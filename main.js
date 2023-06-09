@@ -71,8 +71,10 @@ function initGame() {
         findAllGuessWords();
         fillBoard(all_guess_words_arr);
         $('#clear_div').show();
+        $('#all_words_div').show();
     } else {
         $('#clear_div').hide();
+        $('#all_words_div').hide();
     }
     scrambleAndFill();
     updateStats();

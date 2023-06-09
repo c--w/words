@@ -98,7 +98,7 @@ function fillBoard(words) { //instantiator object for making gameboards
     let rows = g_rows = maxy - miny || 1;
     let cols = g_cols = maxx - minx || 1;
     let grid2 = new Array(rows); //create 2 dimensional array for letter grid
-    let width = 100 / cols - 1;
+    let width = 100 / cols-0.5;
     $('#all_words_div').empty();
     $('#all_words_div').css("grid-template-columns", "repeat(" + cols + ", min(" + width + "vmin, 60px))");
     $('#all_words_div').css("grid-template-rows", "repeat(" + rows + ", min(" + width + "vmin, 60px))");

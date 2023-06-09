@@ -126,6 +126,10 @@ body {
     bottom:0;
     z-index: -1;
 }
+
+#clear_div {
+    margin-top: 2vh;
+}
 #stats {
     font-size: min(3vmin, 18px);
     font-weight: 400;

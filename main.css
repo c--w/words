@@ -31,6 +31,10 @@ body {
     z-index: 1;
 }
 
+#guessed_num_div:not([style*="display: none"])+ #letters_div {
+    margin-top: 5vh;
+}
+
 #letters_div {
     display: flex;
     justify-content: center;
@@ -123,7 +127,9 @@ body {
     z-index: -1;
 }
 
-#clear_div {
+#clear_div, #guessed_num_div {
+    display: flex;
+    justify-content: center;
     margin-top: 2vh;
 }
 #stats {

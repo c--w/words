@@ -72,9 +72,12 @@ function initGame() {
         fillBoard(all_guess_words_arr);
         $('#clear_div').show();
         $('#all_words_div').show();
+        $('#guessed_num_div').show();
+        $('#guessed_num_div').html((all_guess_words_arr.length-all_guess_words.size)+"/"+all_guess_words_arr.length)
     } else {
         $('#clear_div').hide();
         $('#all_words_div').hide();
+        $('#guessed_num_div').hide();
     }
     scrambleAndFill();
     updateStats();
@@ -192,6 +195,7 @@ function handleClick(event) {
                     div.css("color", "#555")
                 }
                 all_guess_words.delete(word);
+                $('#guessed_num_div').html((all_guess_words_arr.length-all_guess_words.size)+"/"+all_guess_words_arr.length)
                 if (all_guess_words.size == 0) {
                     setTimeout(() => {
                         $('#all_words_div > div.full').addClass('winner2');

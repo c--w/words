@@ -1798,6 +1798,7 @@ var hrdict1 = [
  "KIŠNICA",
  "KLADA",
  "KLADIVO",
+ "KLAN",
  "KLANAC",
  "KLANJE",
  "KLAPA",

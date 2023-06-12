@@ -4522,6 +4522,7 @@ var hrdict1 = [
  "SAHRANA",
  "SAJAM",
  "SAKO",
+ "SALA",
  "SALAMA",
  "SALATA",
  "SALAŠ",

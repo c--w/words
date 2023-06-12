@@ -8866,6 +8866,7 @@ var hrdict2 = [
  "SAKATO",
  "SAKO",
  "SAKRITI",
+ "SALA",
  "SALAMA",
  "SALATA",
  "SALAŠ",

@@ -97,7 +97,7 @@ function hint() {
     if (gamemode < 8)
         word = guess_word;
     else
-        word = Array.from(all_guess_words)[0];
+        word = cdl(Array.from(all_guess_words)[0]);
     let elem = $('.letter:not(.selected):not(.past-selected)').toArray().find(l => $(l).data('l') == word[undo_stack.length]);
     handleClick({ target: elem });
     hint_ind++;

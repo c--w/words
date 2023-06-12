@@ -41,7 +41,7 @@ function init() {
 
 function changeGame() {
     gamemode = Number($("#gamemode").val());
-    if(gamemode > 7)
+    if (gamemode > 7)
         letters = gamemode - 3;
     else
         letters = gamemode;
@@ -61,13 +61,13 @@ function changeGame() {
 function initGame() {
     startseed = seed;
     let seed_url;
-    seed_url = gamemode + level + startseed;
+    seed_url = gamemode + "-" + level + "-" + startseed;
 
     var url = window.location.origin + window.location.pathname + "#" + seed_url;
     $("#share-url").val(url);
     $("#seed").attr('title', startseed);
     guess_word = getRandomWord();
-    if(gamemode > 7) {
+    if (gamemode > 7) {
         findAllGuessWords();
         fillBoard(all_guess_words_arr);
         $('#clear_div').show();
@@ -83,7 +83,7 @@ function initGame() {
 
 function scrambleAndFill() {
     let scrambled_word = [...guess_word].sort(randomsort).sort(randomsort);
-    
+
     fillLetters(scrambled_word);
     undo_stack = [];
     undo_stack_elem = [];
@@ -92,14 +92,14 @@ function scrambleAndFill() {
 }
 
 function hint() {
-    start_time -= 20*1000*(undo_stack.length+1);
+    start_time -= 20 * 1000 * (undo_stack.length + 1);
     let word;
-    if(gamemode<8)
+    if (gamemode < 8)
         word = guess_word;
-    else 
+    else
         word = Array.from(all_guess_words)[0];
     let elem = $('.letter:not(.selected):not(.past-selected)').toArray().find(l => $(l).data('l') == word[undo_stack.length]);
-    handleClick({target: elem});
+    handleClick({ target: elem });
     hint_ind++;
 }
 
@@ -140,7 +140,7 @@ function fillLetters(letters_arr) {
         for (let i = 0; i < letters; i++) {
             const target_css = $('.letter:nth-of-type(' + (i + 1) + ')').css('transform');
             css_transforms[i] = target_css;
-        }        
+        }
         $('#letters_div').addClass("circle" + letters);
     }, 0)
 
@@ -171,30 +171,30 @@ function handleClick(event) {
         last_selected = el;
         undo_stack.push(el.data('l'));
         undo_stack_elem.push(el);
-        if(gamemode > 7) {
+        if (gamemode > 7) {
             let word = undo_stack.join('');
-            if (undo_stack.length >=4 && all_guess_words.has(word)) {
-                setTimeout(()=>{
-                    $('.selected,.past-selected').addClass('success');    
+            if (undo_stack.length >= 4 && all_guess_words.has(word)) {
+                setTimeout(() => {
+                    $('.selected,.past-selected').addClass('success');
                 }, 0);
-                setTimeout(()=>{
-                    $('.selected,.past-selected').removeClass('success');    
+                setTimeout(() => {
+                    $('.selected,.past-selected').removeClass('success');
                 }, 1000);
-                let ind = all_guess_words_arr.findIndex(w => w==word);
+                let ind = all_guess_words_arr.findIndex(w => w == word);
                 let coord = coords[ind];
                 let yf = ind % 2;
                 let xf = 1 - yf;
                 let all_divs = $($('#all_words_div > div'));
-                for(let j=0; j<coord.l; j++) {
+                for (let j = 0; j < coord.l; j++) {
                     let xx = coord.x + j * xf;
                     let yy = coord.y + j * yf;
-                    let div = $(all_divs[yy*g_cols+xx])
+                    let div = $(all_divs[yy * g_cols + xx])
                     div.css("color", "#555")
                 }
                 all_guess_words.delete(word);
-                if(all_guess_words.size == 0) {
+                if (all_guess_words.size == 0) {
                     setTimeout(() => {
-                        $('#all_words_div > div.full').addClass('winner');
+                        $('#all_words_div > div.full').addClass('winner2');
                     }, 500)
                     games++;
                     last_time = Math.round((Date.now() - start_time) / 1000);
@@ -203,14 +203,21 @@ function handleClick(event) {
                 } else {
                     setTimeout(reset, 1000);
                 }
-            } else if(undo_stack.length == letters) {
+            } else if (undo_stack.length == letters) {
                 setTimeout(reset, 1000);
+            } else if (undo_stack.length >= 4 && all_guess_words_arr.find(w => w == word)) {
+                setTimeout(() => {
+                    $('.selected,.past-selected').addClass('success');
+                }, 0);
+                setTimeout(() => {
+                    $('.selected,.past-selected').removeClass('success');
+                }, 300);
             }
         } else if (undo_stack.length == letters) {
             if (undo_stack.join('') == guess_word.join('')) {
                 //fillLetters(guess_word)
                 setTimeout(() => {
-                    $('#letters_div').removeClass('circle'+letters);
+                    $('#letters_div').removeClass('circle' + letters);
                 }, 620)
 
                 setTimeout(animateLetters, 310)
@@ -243,7 +250,7 @@ function animateLetters() {
         const source = $('.letter:nth-of-type(' + ($(undo_stack_elem[i]).data('i') + 1) + ')');
 
         setTimeout((source, i) => {
-            $(source).css('transform',  css_transforms[i]);
+            $(source).css('transform', css_transforms[i]);
         }, 10, source, i);
     }
 }
@@ -257,10 +264,10 @@ function rand() {
 
 function initSeed() {
     if (window.location.hash) {
-        gamemode = Number(window.location.hash.substring(1, 2))
-        level = Number(window.location.hash.substring(2, 3))
-        seed = window.location.hash.substring(3);
-        seed = Number(seed)
+        let tmp = window.location.hash.substring(1).split("-");
+        gamemode = Number(tmp[0])
+        level = Number(tmp[1])
+        seed = Number(tmp[2]);
         if (!isNaN(seed))
             return;
     }
@@ -287,7 +294,7 @@ function getRandomWord() {
 
 function findAllGuessWords() {
     all_guess_words = new Set();
-    for(let i = 4; i<=letters; i++) {
+    for (let i = 4; i <= letters; i++) {
         takeLetter(guess_word, i, []);
     }
     all_guess_words_arr = Array.from(all_guess_words);
@@ -295,12 +302,12 @@ function findAllGuessWords() {
 }
 
 function takeLetter(letters_left, len, taken) {
-    for(let i = 0; i < letters_left.length; i++) {
-        let letters = [...letters_left]; 
+    for (let i = 0; i < letters_left.length; i++) {
+        let letters = [...letters_left];
         let taken2 = [...taken];
         taken2.push(letters[i]);
-        if(taken2.length<len) {
-            takeLetter(letters.slice(i+1), len, taken2)
+        if (taken2.length < len) {
+            takeLetter(letters.slice(i + 1), len, taken2)
         } else {
             let t = taken2.sort().join('');
             dw.filter(word => cdl(word).sort().join('') == t).forEach(w => all_guess_words.add(w))

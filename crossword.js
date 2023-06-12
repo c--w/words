@@ -120,7 +120,7 @@ function fillBoard(words) { //instantiator object for making gameboards
     coords.forEach((c, i) => {
         let yf = i % 2;
         let xf = 1 - yf
-        let color = "hsl(" + color_step * i + "deg 100% 90% / 0.5)";
+        let color = "hsl(" + color_step * i + "deg 100% 50% / 0.2)";
         c.x = c.x - minx;
         c.y = c.y - miny;
         for (let j = 0; j < c.l; j++) {
@@ -132,21 +132,21 @@ function fillBoard(words) { //instantiator object for making gameboards
             div.append(bckg);
             if (i % 2) {
                 if (j == 0) {
-                    div.css('border-bottom-color', '#ccc')
+                    div.css('border-bottom-color', '#bbb')
                 } else if (j == c.l - 1) {
-                    div.css('border-top-color', '#ccc')
+                    div.css('border-top-color', '#bbb')
                 } else {
-                    div.css('border-top-color', '#ccc')
-                    div.css('border-bottom-color', '#ccc')
+                    div.css('border-top-color', '#bbb')
+                    div.css('border-bottom-color', '#bbb')
                 }
             } else {
                 if (j == 0) {
-                    div.css('border-right-color', '#ccc')
+                    div.css('border-right-color', '#bbb')
                 } else if (j == c.l - 1) {
-                    div.css('border-left-color', '#ccc')
+                    div.css('border-left-color', '#bbb')
                 } else {
-                    div.css('border-right-color', '#ccc')
-                    div.css('border-left-color', '#ccc')
+                    div.css('border-right-color', '#bbb')
+                    div.css('border-left-color', '#bbb')
                 }
 
             }

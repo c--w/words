@@ -71,10 +71,11 @@ body {
     transition: all 0.5s cubic-bezier(0.5, -0.5, 0.5, 2);
     border: 0;
     box-shadow: 0px 0px 5vmin 0px gold;
-    transition: all .5s ease-out;
     border-radius: 5%;
 }
-
+.winner2 {
+    box-shadow: 0px 0px 5vmin 0px gold;
+}
 .success {
     background-color: goldenrod;
     transition: all 0.25s cubic-bezier(0.5, -0.5, 0.5, 2);
@@ -98,8 +99,7 @@ body {
 }
 
 #all_words_div div {
-    margin: 0.2vmin;
-    padding: 0.6vmin;
+    margin: 2px;
     color: #0000;
     font-family: 'Roboto Mono', monospace;
     font-weight: bold;
@@ -112,11 +112,7 @@ body {
 }
 
 #all_words_div div.full {
-    border: 0.6vmin solid #555;
-}
-#all_words_div div.found {
-    background-color: #fff;
-    color: #555;
+    border: 2px solid #555;
 }
 #all_words_div div div.bckg {
     position: absolute;

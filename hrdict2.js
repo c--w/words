@@ -9270,6 +9270,7 @@ var hrdict2 = [
  "SLAVUJ",
  "SLEDITI",
  "SLENG",
+ "SLET",
  "SLETNA",
  "SLETNI",
  "SLETNO",

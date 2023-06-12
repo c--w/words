@@ -4730,6 +4730,7 @@ var hrdict1 = [
  "SLAVLJE",
  "SLAVUJ",
  "SLENG",
+ "SLET",
  "SLEZENA",
  "SLEĐ",
  "SLIJED",

@@ -21,10 +21,10 @@ function fillBoard(words) { //instantiator object for making gameboards
         grid[starty][startx + i] = word[i];
         coord.all.push({ x: startx + i, y: starty })
     }
-    let minx = startx;
-    let miny = starty;
-    let maxx = 0;
-    let maxy = 0;
+    let minx = coord.x;
+    let miny = coord.y;
+    let maxx = minx + coord.l;
+    let maxy = miny;
     for (let i = 1; i < words.length; i++) {
         word = cdl(words[i]);
         let yf = i % 2;
@@ -35,6 +35,10 @@ function fillBoard(words) { //instantiator object for making gameboards
             minx = coord.x;
         if (coord.y < miny)
             miny = coord.y;
+        if (coord.x + coord.l * xf > maxx) 
+            maxx = coord.x + coord.l * xf;
+        if (coord.y + coord.l * yf > maxy) 
+            maxy = coord.y + coord.l * yf;
     }
 
     function placeWord(word, xf, yf) {
@@ -72,6 +76,11 @@ function fillBoard(words) { //instantiator object for making gameboards
                 best_coord.y = y;
             }
         }
+        if (best_coord.x == 0 && best_coord.y == 0) {
+            best_coord.x = minx - best_coord.l * xf;
+            best_coord.y = miny - best_coord.l * yf;
+            console.log("Floating...")
+        }
         for (let i = 0; i < word.length; i++) {
             c = word[i];
             grid[best_coord.y + i * yf][best_coord.x + i * xf] = c;
@@ -79,30 +88,15 @@ function fillBoard(words) { //instantiator object for making gameboards
         }
         return best_coord;
     }
-    coords.forEach((c, i) => {
-        let yf = i % 2;
-        let xf = 1 - yf
-        if (c.x < minx) {
-            minx = c.x;
-        }
-        if (c.y < miny) {
-            miny = c.y;
-        }
-        if (c.x + c.l * xf > maxx) {
-            maxx = c.x + c.l * xf;
-        }
-        if (c.y + c.l * yf > maxy) {
-            maxy = c.y + c.l * yf;
-        }
-    });
+
     let rows = g_rows = maxy - miny || 1;
     let cols = g_cols = maxx - minx || 1;
-    let grid2 = new Array(rows); //create 2 dimensional array for letter grid
-    let width = 100 / cols-0.5;
+    let grid2 = new Array(rows); 
+    let width = 100 / cols - 0.5;
     $('#all_words_div').empty();
-    $('#all_words_div').css("grid-template-columns", "repeat(" + cols + ", min(" + width + "vmin, 60px))");
-    $('#all_words_div').css("grid-template-rows", "repeat(" + rows + ", min(" + width + "vmin, 60px))");
-    $('#all_words_div').css("font-size", "min(" + width / 2 + "vmin, 30px)");
+    $('#all_words_div').css("grid-template-columns", "repeat(" + cols + ", min(" + width + "vw, 60px))");
+    $('#all_words_div').css("grid-template-rows", "repeat(" + rows + ", min(" + width + "vw, 60px))");
+    $('#all_words_div').css("font-size", "min(" + width / 2 + "vw, 30px)");
     for (var i = 0; i < rows; i++) {
         grid2[i] = new Array(cols);
         for (var j = 0; j < cols; j++) {

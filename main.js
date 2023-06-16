@@ -75,7 +75,7 @@ function initGame() {
         $('#clear_div').show();
         $('#all_words_div').show();
         $('#guessed_num_div').show();
-        $('#guessed_num_div').html((all_guess_words_arr.length-all_guess_words.size)+"/"+all_guess_words_arr.length)
+        $('#guessed_num_div').html((all_guess_words_arr.length - all_guess_words.size) + "/" + all_guess_words_arr.length)
     } else {
         $('#clear_div').hide();
         $('#all_words_div').hide();
@@ -153,9 +153,11 @@ function fillLetters(letters_arr) {
 
 var click_time = 0;
 function handleClick(event) {
-    event.stopPropagation();
-    event.preventDefault();
-    if(Date.now() - click_time < 100)
+    if (event.stopPropagation) {
+        event.stopPropagation();
+        event.preventDefault();
+    }
+    if (Date.now() - click_time < 100)
         return false;
     click_time = Date.now();
     let el = $(event.target);
@@ -203,7 +205,7 @@ function handleClick(event) {
                     div.css("color", "#555")
                 }
                 all_guess_words.delete(word);
-                $('#guessed_num_div').html((all_guess_words_arr.length-all_guess_words.size)+"/"+all_guess_words_arr.length)
+                $('#guessed_num_div').html((all_guess_words_arr.length - all_guess_words.size) + "/" + all_guess_words_arr.length)
                 if (all_guess_words.size == 0) {
                     setTimeout(() => {
                         $('#all_words_div > div.full').addClass('winner2');

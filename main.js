@@ -16,7 +16,8 @@ var level;
 var last_selected;
 var css_transforms = new Array(7);
 function init() {
-    document.onclick = (event) => handleClick(event);
+    document.onmousedown = (event) => handleClick(event);
+    document.ontouchstart = (event) => handleClick(event);
     initSeed();
     if (!gamemode) {// try cookie
         gamemode = Number(getCookie("gamemode"));
@@ -149,7 +150,11 @@ function fillLetters(letters_arr) {
 
 }
 
+var click_time = 0;
 function handleClick(event) {
+    if(Date.now() - click_time < 100)
+        return;
+    click_time = Date.now();
     let el = $(event.target);
     if (el.hasClass('letter')) {
         effect(el);

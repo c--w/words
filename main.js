@@ -16,8 +16,9 @@ var level;
 var last_selected;
 var css_transforms = new Array(7);
 function init() {
-    document.onmousedown = (event) => handleClick(event);
-    document.ontouchstart = (event) => handleClick(event);
+    let letters_div = document.querySelector("#letters_div");
+    letters_div.onmousedown = (event) => handleClick(event);
+    letters_div.ontouchstart = (event) => handleClick(event);
     initSeed();
     if (!gamemode) {// try cookie
         gamemode = Number(getCookie("gamemode"));

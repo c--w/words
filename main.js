@@ -155,7 +155,7 @@ function handleClick(event) {
     event.stopPropagation();
     event.preventDefault();
     if(Date.now() - click_time < 100)
-        return fale;
+        return false;
     click_time = Date.now();
     let el = $(event.target);
     if (el.hasClass('letter')) {

@@ -152,8 +152,10 @@ function fillLetters(letters_arr) {
 
 var click_time = 0;
 function handleClick(event) {
+    event.stopPropagation();
+    event.preventDefault();
     if(Date.now() - click_time < 100)
-        return;
+        return fale;
     click_time = Date.now();
     let el = $(event.target);
     if (el.hasClass('letter')) {

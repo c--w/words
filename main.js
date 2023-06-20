@@ -202,7 +202,9 @@ function handleClick(event) {
                     let xx = coord.x + j * xf;
                     let yy = coord.y + j * yf;
                     let div = $(all_divs[yy * g_cols + xx])
-                    div.css("color", "#555")
+                    div.css("color", "#555");
+                    div.addClass('winner2');
+                    setTimeout( div => div.removeClass('winner2'), 1000, div);
                 }
                 all_guess_words.delete(word);
                 $('#guessed_num_div').html((all_guess_words_arr.length - all_guess_words.size) + "/" + all_guess_words_arr.length)

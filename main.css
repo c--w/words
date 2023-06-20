@@ -78,7 +78,8 @@ body {
     border-radius: 5%;
 }
 .winner2 {
-    box-shadow: 0px 0px 2vmin 0px gold;
+    box-shadow: 0px 0px 1vmin 0px gold;
+    border: 2px solid gold !important;
 }
 .success {
     background-color: goldenrod;

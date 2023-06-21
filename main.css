@@ -4,6 +4,12 @@ html {
     font-size: min(4vw, 26px);
 }
 
+:root {
+    --border-light-color: #ccc;
+    --main-box-margin: 2px;
+    --inner-box-margin: 1px;
+    --box-border-width: 2px;
+}
 * {
     transition: all .3s ease-out;
     transition: transform .8s ease-out;
@@ -104,7 +110,7 @@ body {
 }
 
 #all_words_div div {
-    margin: 2px;
+    margin: var(--main-box-margin);
     color: #0000;
     font-family: 'Roboto Mono', monospace;
     font-weight: bold;
@@ -116,9 +122,66 @@ body {
     position: relative;
 }
 
+#all_words_div div div {
+    margin: var(--inner-box-margin);
+}
+#all_words_div div i {
+    position: absolute;
+    background-color: #555;
+}
 #all_words_div div.full {
     border: 2px solid #555;
+    border-width: var(--box-border-width);
 }
+#all_words_div div.full.top {
+    border-bottom-color: var(--border-light-color);
+}
+#all_words_div div i.bottom {
+    width: 1px;
+    height: calc(2*var(--main-box-margin));
+    top: calc(100% + 1*var(--main-box-margin));
+    left: 50%;
+    transform: translateX(-50%);
+}
+#all_words_div div.full.bottom {
+    border-top-color: var(--border-light-color);
+}
+#all_words_div div i.top {
+    width: 1px;
+    height: calc(2*var(--main-box-margin));
+    top: calc(0px - 3*var(--main-box-margin));
+    left: 50%;
+    transform: translateX(-50%);
+}
+#all_words_div div.full.vertical {
+    border-top-color: var(--border-light-color);
+    border-bottom-color: var(--border-light-color);
+}
+#all_words_div div.full.left {
+    border-right-color: var(--border-light-color);
+}
+#all_words_div div i.right {
+    height: 1px;
+    width: calc(2*var(--main-box-margin));
+    left: calc(100% + 1*var(--main-box-margin));
+    top: 50%;
+    transform: translateY(-50%);
+}
+#all_words_div div.full.right {
+    border-left-color: var(--border-light-color);
+}
+#all_words_div div i.left {
+    height: 1px;
+    width: calc(2*var(--main-box-margin));
+    left: calc(0px - 3*var(--main-box-margin));
+    top: 50%;
+    transform: translateY(-50%);
+}
+#all_words_div div.full.horizontal {
+    border-left-color: var(--border-light-color);
+    border-right-color: var(--border-light-color);
+}
+
 #all_words_div div div.bckg {
     position: absolute;
     top:0;

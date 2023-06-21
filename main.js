@@ -39,6 +39,10 @@ function init() {
     $("#gamemode").on("change", changeGame);
     $("#level").on("change", changeGame);
     changeGame();
+    window.onresize = function() {
+        if(gamemode > 7)
+            calculateCSS();
+    }
 }
 
 function changeGame() {

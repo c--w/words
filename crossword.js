@@ -1,4 +1,5 @@
 const N = 50;
+const border_light_color = 'var(--border-light-color)';
 var coords;
 var g_rows;
 var g_cols;
@@ -92,11 +93,8 @@ function fillBoard(words) { //instantiator object for making gameboards
     let rows = g_rows = maxy - miny || 1;
     let cols = g_cols = maxx - minx || 1;
     let grid2 = new Array(rows); 
-    let width = 100 / cols - 0.5;
     $('#all_words_div').empty();
-    $('#all_words_div').css("grid-template-columns", "repeat(" + cols + ", min(" + width + "vw, 60px))");
-    $('#all_words_div').css("grid-template-rows", "repeat(" + rows + ", min(" + width + "vw, 60px))");
-    $('#all_words_div').css("font-size", "min(" + width / 2 + "vw, 30px)");
+    calculateCSS();    
     for (var i = 0; i < rows; i++) {
         grid2[i] = new Array(cols);
         for (var j = 0; j < cols; j++) {
@@ -126,25 +124,45 @@ function fillBoard(words) { //instantiator object for making gameboards
             div.append(bckg);
             if (i % 2) {
                 if (j == 0) {
-                    div.css('border-bottom-color', '#bbb')
+                    div.addClass('top');
+                    div.append('<i class="bottom">')
                 } else if (j == c.l - 1) {
-                    div.css('border-top-color', '#bbb')
+                    div.addClass('bottom')
+                    div.append('<i class="top">')
                 } else {
-                    div.css('border-top-color', '#bbb')
-                    div.css('border-bottom-color', '#bbb')
+                    div.addClass('vertical')
+                    div.append('<i class="bottom">')
+                    div.append('<i class="top">')
                 }
             } else {
                 if (j == 0) {
-                    div.css('border-right-color', '#bbb')
+                    div.addClass('left')
+                    div.append('<i class="right">')
                 } else if (j == c.l - 1) {
-                    div.css('border-left-color', '#bbb')
+                    div.append('<i class="left">')
+                    div.addClass('right')
                 } else {
-                    div.css('border-right-color', '#bbb')
-                    div.css('border-left-color', '#bbb')
+                    div.addClass('horizontal')
+                    div.append('<i class="right">')
+                    div.append('<i class="left">')
                 }
-
             }
         }
     })
     console.table(grid2);
+}
+
+function calculateCSS() {
+    let width = Math.floor(window.innerWidth/(g_cols+1));
+    if(width>80)
+        width = 80;
+    let margin = Math.ceil(width/32);
+    let margin2 = Math.ceil(margin/1.5);
+    //width = width - 2*margin;
+    document.querySelector(':root').style.setProperty('--main-box-margin', margin+'px');
+    document.querySelector(':root').style.setProperty('--inner-box-margin', margin2+'px');
+    document.querySelector(':root').style.setProperty('--box-border-width', margin+'px');
+    $('#all_words_div').css("grid-template-columns", "repeat(" + g_cols + ", " + width + "px)");
+    $('#all_words_div').css("grid-template-rows", "repeat(" + g_rows + ", " + width + "px)");
+    $('#all_words_div').css("font-size", width / 2 + "px");
 }
